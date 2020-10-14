@@ -9,6 +9,8 @@ typedef int GrandEntier[NbChiffresMax];
 /* *********************************************************** */
 void Initialise(GrandEntier Nombre)
 {
+	Nombre = 0 ;
+	return 0;
 }
 /* *********************************************************** */
 /* Procedure d'affichage d'un grand entier à l'ecran */
@@ -18,21 +20,32 @@ void Affiche(GrandEntier Nombre)
 	/* affichage d'espace à la place des zéros à gauche
 	Sauf s'il s'agit du digit de droite, au cas ou GrandEntier vaut 0,
 	il faut afficher 0 */
+	int i = 0; int taille = 0; int c = 0;
+	taille = sizeof(Nombre);
+	for (i; i < taille; i++) {
+		printf("%d", Nombre[i]);
+		c++;
+		if (c == 3) {
+			printf("  ");
+			c = 0;
+		}
+	}
 }
+
+
 /* ***************************************************************/
 /* Procedure d'ajout d'un chiffre à droite dans un grand entier */
-/* ***************************************************************/
+/* ***************************************************************
 int AjouteADroite(GrandEntier Nb, int Chiffre)
 {
 	/* décallage à gauche des chiffres */
 	//écriture du nouveau chiffre
-	// dans la case de droite ainsi libérée
-}
+	// dans la case de droite ainsi libérée}
 /* *********************************************************** */
 /* Procedure de saisie d'un grand entier au clavier */
 /* *********************************************************** */
 /* FONCTION COMPLETE : NE DOIT PAS ETRE MODIFIEE */
-int EntreeClavier(GrandEntier Nombre)
+/*int EntreeClavier(GrandEntier Nombre)
 {
 	int NbChiffresLus = 0;
 	wchar_t car; // touche frappée en entrée
@@ -67,7 +80,7 @@ int EntreeClavier(GrandEntier Nombre)
 }
 /* *********************************************************** */
 /* Procedure de calcul de la somme de deux grands entiers */
-/* *********************************************************** */
+/* *********************************************************** 
 int Addition(GrandEntier Nb1, GrandEntier Nb2, GrandEntier Result)
 {
 }
@@ -75,7 +88,7 @@ int Addition(GrandEntier Nb1, GrandEntier Nb2, GrandEntier Result)
 /* *********************************************************** */
 /* Programme principal: COMPLET : rien à modifier */
 /* *********************************************************** */
-int main()
+/*int main()
 {
 	GrandEntier Nb1, Nb2, Nb3;
 	int i;
@@ -108,4 +121,4 @@ int main()
 		}
 	}
 	return (EXIT_SUCCESS);
-}
+}*/

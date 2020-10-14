@@ -142,6 +142,9 @@
     <ClCompile Include="Fonctions_1.c" />
     <ClCompile Include="main1.c" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="td5_util.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
