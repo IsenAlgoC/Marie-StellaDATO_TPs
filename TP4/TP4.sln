@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exo4", "Exo4\Exo4.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exo5", "Exo5\Exo5.vcxproj", "{8A20E1CE-5D90-4222-A681-9744175F8C64}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Exo6", "Exo6\Exo6.vcxproj", "{CF9A91BF-ABFD-448C-AA0F-EC546AE751A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{8A20E1CE-5D90-4222-A681-9744175F8C64}.Release|x64.Build.0 = Release|x64
 		{8A20E1CE-5D90-4222-A681-9744175F8C64}.Release|x86.ActiveCfg = Release|Win32
 		{8A20E1CE-5D90-4222-A681-9744175F8C64}.Release|x86.Build.0 = Release|Win32
+		{CF9A91BF-ABFD-448C-AA0F-EC546AE751A0}.Debug|x64.ActiveCfg = Debug|x64
+		{CF9A91BF-ABFD-448C-AA0F-EC546AE751A0}.Debug|x64.Build.0 = Debug|x64
+		{CF9A91BF-ABFD-448C-AA0F-EC546AE751A0}.Debug|x86.ActiveCfg = Debug|Win32
+		{CF9A91BF-ABFD-448C-AA0F-EC546AE751A0}.Debug|x86.Build.0 = Debug|Win32
+		{CF9A91BF-ABFD-448C-AA0F-EC546AE751A0}.Release|x64.ActiveCfg = Release|x64
+		{CF9A91BF-ABFD-448C-AA0F-EC546AE751A0}.Release|x64.Build.0 = Release|x64
+		{CF9A91BF-ABFD-448C-AA0F-EC546AE751A0}.Release|x86.ActiveCfg = Release|Win32
+		{CF9A91BF-ABFD-448C-AA0F-EC546AE751A0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
