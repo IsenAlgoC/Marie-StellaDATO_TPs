@@ -1,3 +1,9 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+#include <stdbool.h>
+
 #define NbChiffresMax 30
 // taille max pour representer un grand entier
 typedef int GrandEntier[NbChiffresMax];
@@ -9,8 +15,10 @@ typedef int GrandEntier[NbChiffresMax];
 /* *********************************************************** */
 void Initialise(GrandEntier Nombre)
 {
-	Nombre = 0 ;
-	return 0;
+	int i = 0;
+	for (i, i < NbChiffresMax; i++;) {
+		Nombre[i] = 0;
+	}
 }
 /* *********************************************************** */
 /* Procedure d'affichage d'un grand entier à l'ecran */
@@ -20,32 +28,56 @@ void Affiche(GrandEntier Nombre)
 	/* affichage d'espace à la place des zéros à gauche
 	Sauf s'il s'agit du digit de droite, au cas ou GrandEntier vaut 0,
 	il faut afficher 0 */
-	int i = 0; int taille = 0; int c = 0;
-	taille = sizeof(Nombre);
-	for (i; i < taille; i++) {
-		printf("%d", Nombre[i]);
-		c++;
-		if (c == 3) {
-			printf("  ");
-			c = 0;
+	printf("\nOn a : ");
+	int i = NbChiffresMax - 1; int c = 0; int j = 0;
+
+	/*for (i=NbChiffresMax - 1; i>0; i--){
+		if (Nombre[i] == 0) {
+			printf(" ");
+			c++;
+			if (c == 3) { printf("  "); c = 0; }
 		}
+	}*/							//Traduction  |
+								// 		     \|/
+								//			  |
+
+	//Je parcours le nombre de droite à gauche			
+	while ((i>0)&&(Nombre[i] == 0)) {		//Tant que le nombre=0
+		printf("|");
+		i--;
+		c++;
+		if (c == 3) { printf("  "); c = 0; }
+	}
+	
+	for (j;j<=i;j++){						//Je reprends du début jusque i (là où commence les 0)
+		printf("%d", Nombre[j]);		//ou %u pour unsigned
+		c++;
+		if (c == 3) { printf("  "); c = 0; }  // après trois chiffres, je mets un espace
 	}
 }
 
-
 /* ***************************************************************/
-/* Procedure d'ajout d'un chiffre à droite dans un grand entier */
-/* ***************************************************************
+/* Procedure d'ajout d'un chiffre à droite dans un grand entier 
+	//Décallage à gauche des chiffres 
+	//Ecriture du nouveau chiffre dans la case de droite ainsi libérée*/
+/* ***************************************************************/
 int AjouteADroite(GrandEntier Nb, int Chiffre)
 {
-	/* décallage à gauche des chiffres */
-	//écriture du nouveau chiffre
-	// dans la case de droite ainsi libérée}
+	int taille = 0; taille = sizeof(Nb);
+	for (int j=1; j <NbChiffresMax; j++) {
+		Nb[j - 1]=Nb[j];
+	}
+	//Je vais tout à droite de mon Nb --> i
+		//Je remplace Nb[i] par Chiffre
+	Nb[taille - 1] = Chiffre;
+	return Nb;
+}
+	
 /* *********************************************************** */
 /* Procedure de saisie d'un grand entier au clavier */
-/* *********************************************************** */
+/* ***********************************************************/
 /* FONCTION COMPLETE : NE DOIT PAS ETRE MODIFIEE */
-/*int EntreeClavier(GrandEntier Nombre)
+int EntreeClavier(GrandEntier Nombre)
 {
 	int NbChiffresLus = 0;
 	wchar_t car; // touche frappée en entrée
@@ -87,8 +119,8 @@ int Addition(GrandEntier Nb1, GrandEntier Nb2, GrandEntier Result)
 
 /* *********************************************************** */
 /* Programme principal: COMPLET : rien à modifier */
-/* *********************************************************** */
-/*int main()
+/* *********************************************************** *
+int main()
 {
 	GrandEntier Nb1, Nb2, Nb3;
 	int i;

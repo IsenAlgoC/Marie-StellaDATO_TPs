@@ -76,7 +76,7 @@ int compterCar(char chaine[], int tailleMax) {
 	return compteur;
 }
 
-//EXO4
+/*/EXO4
 //compte le nombre d'occurrences, c'est-à-dire d'apparitions, d'un caractère dans une chaîne de caractères. 
 //Par exemple, occur("toto", 5, 'o') renvoie la valeur 2.
 int occur(char mot[], int tailleMax, char car) {
@@ -100,7 +100,7 @@ int occur(char mot[], int tailleMax, char car) {
 		}
 	}
 	return compteur;
-}
+}*/
 
 //EXO5
 int swap(int* A, int* B) {
