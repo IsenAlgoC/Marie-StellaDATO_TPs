@@ -32,7 +32,7 @@ int main() {
 	do { tmp = *(mot + k); *(CopieMot + k) = tmp; k++; } while (tmp != 0);  //je copie mot dans tmpMot
 	//printf("\nMot = %s  et CopieMot = %s ", mot,CopieMot);
 
-	//Maintenant, je vais inerser tmpMot 
+	//Maintenant, je vais inverser tmpMot 
 	while (Longueur != -1) {			//Le faire jusquà ce que la longueur soit nulle
 		tmp = tmpMot[i];          // Le 1er caractère de tmpMot va dans tmp
 		tmpMot[i] = mot[Longueur];	//Le premier caractère devient le dernier caractère de mot

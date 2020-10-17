@@ -76,7 +76,7 @@ int compterCar(char chaine[], int tailleMax) {
 	return compteur;
 }
 
-/*/EXO4
+//EXO4
 //compte le nombre d'occurrences, c'est-à-dire d'apparitions, d'un caractère dans une chaîne de caractères. 
 //Par exemple, occur("toto", 5, 'o') renvoie la valeur 2.
 int occur(char mot[], int tailleMax, char car) {
@@ -85,7 +85,8 @@ int occur(char mot[], int tailleMax, char car) {
 
 	Longueur = strlen(mot) - 2;   //<------- correspond à la longueur du mot jusque avant \n
 	printf("Que recherchez vous ?");
-	fgets(car0, 100, stdin);
+	scanf_s("%s", &car0);
+	//fgets(car0, 100, stdin);
 	car = *car0;
 
 	for (int i = 0; i <= Longueur; i++) {
@@ -100,7 +101,7 @@ int occur(char mot[], int tailleMax, char car) {
 		}
 	}
 	return compteur;
-}*/
+}
 
 //EXO5
 int swap(int* A, int* B) {

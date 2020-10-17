@@ -22,13 +22,11 @@ void Valide_ou_Non()
 	{
 		printf("VALIDE");
 		printf("\nCOLIS SUIVANT\n");
-		Valide_ou_Non();
 	}
 	else
 	{
 		printf("NON VALIDE");
 		printf("\nCOLIS SUIVANT\n");
-		Valide_ou_Non();
 	}
 }
 

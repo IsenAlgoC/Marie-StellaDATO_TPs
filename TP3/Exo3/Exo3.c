@@ -56,9 +56,7 @@ int main()
 				break;
 			}
 		}
-		if (tableau[i] = 30) {
-			tableau[i] = NBMAXNOTES
-		}
+		if (tableau[i] == 30) {tableau[i] = NBMAXNOTES;}
 		//Ici je compare toutes notes pour avoir mon max et mon min
 		if (Note < min)
 		{

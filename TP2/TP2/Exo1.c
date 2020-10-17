@@ -8,18 +8,12 @@ int main()
 	//Somme des n premiers entiers > 0
 	int S, n;
 	S = 0;
-	for (n = 0; (n <= 100); n++)
-	{
-		S += n;
-	}
+	for (n = 0; (n <= 100); n++){S += n;}
 	printf("1ere Methode\nLa somme des 100 premiers entiers est %d\n ", S);
 
 	S = 0;
 	n = 0;
-	while (n <= 100)
-	{
-		S += n; n += 1;
-	}
+	while (n <= 100){S += n; n += 1;}
 	printf("2e Methode\nLa somme des 100 premiers entiers est %d\n ", S);
 
 	S = 0;
@@ -28,7 +22,7 @@ int main()
 	printf("3e Methode\nLa somme des 100 premiers entiers est %d\n ", S);
 }
 //Trouver la valeur maximum de n sans dépassement de capacité
-/*int main()
+int main()
 {
 	unsigned short int S, n;
 	int i, B;
@@ -66,4 +60,4 @@ int main()
 		S += i;
 	}
 	printf("1ere Methode\nLa somme des %hu premiers entiers est %hu\n ", n, S);
-}*/
+}

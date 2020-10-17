@@ -18,5 +18,16 @@
     <ClCompile Include="main.c">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="ConsoleTools.c">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConsoleTools.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="chenille.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

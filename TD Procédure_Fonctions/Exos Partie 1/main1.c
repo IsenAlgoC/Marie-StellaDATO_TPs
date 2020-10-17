@@ -21,7 +21,7 @@ int main()
 	printf("\nEcrivez un texte : \n");
 	fgets(chaine, 1020, stdin);
 	c = compterCar(chaine, 1020);
-	printf("\nCette chaine de caractère contient %d caractères.", c);
+	printf("\nCette chaine de caractère contient %d caractères.", c);*/
 
 	printf("\nEXO4");
 	int cp = 0; char mot[100] = { 0 }; char car[3] = { 0 }; char car0[100] = { 0 }; int taille = 0; char tmp; int k = 0;
@@ -36,7 +36,7 @@ int main()
 	cp = occur(mot, 100, car);
 	printf("\nIl y a %d fois %s dans %s", cp, car, mot);
 
-	printf("\nEXO6");
+	/*printf("\nEXO6");
 	int carre[sizeCarre][sizeCarre] = {
 	{2,7,6},
 	{9,5,1},
@@ -48,11 +48,11 @@ int main()
 	}
 	else{
 		printf("\nFaux");
-	}*/
+	}
 
 	printf("\nEXO5");
 	int A = 3; int B = 18;
 	swap(&A, &B);
-	printf("A devient %d, B devient %d\n", A, B);
+	printf("A devient %d, B devient %d\n", A, B);*/
 	return (EXIT_SUCCESS);
 }
