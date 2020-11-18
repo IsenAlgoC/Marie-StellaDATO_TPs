@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{67ecc95a-a1ea-4715-b8c2-4ed147946064}</ProjectGuid>
-    <RootNamespace>TP5</RootNamespace>
+    <ProjectGuid>{b578f082-3c54-4060-8860-89bb7bbe44d5}</ProjectGuid>
+    <RootNamespace>Exercice2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Exercice 1</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -140,11 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main1.c" />
-    <ClCompile Include="tab.c" />
+    <ClCompile Include="fonctions.c" />
+    <ClCompile Include="main2.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tab.h" />
+    <ClInclude Include="exo2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
