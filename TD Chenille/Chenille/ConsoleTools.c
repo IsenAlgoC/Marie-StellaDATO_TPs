@@ -341,6 +341,7 @@ int plotChar(char SomeChar) {
 	chBuffer[0] = SomeChar;
 	chBuffer[1] = 0;
 	cRead = 1;
+
 	if (WriteFile(hStdout, chBuffer, cRead, &cWritten, NULL)) {
 		return(0);
 	}

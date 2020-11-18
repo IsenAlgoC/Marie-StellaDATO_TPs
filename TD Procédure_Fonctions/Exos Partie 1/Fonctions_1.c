@@ -85,7 +85,7 @@ int occur(char mot[], int tailleMax, char car) {
 
 	Longueur = strlen(mot) - 2;   //<------- correspond à la longueur du mot jusque avant \n
 	printf("Que recherchez vous ?");
-	scanf_s("%s", &car0);
+	scanf_s("%c", &car0);
 	//fgets(car0, 100, stdin);
 	car = *car0;
 

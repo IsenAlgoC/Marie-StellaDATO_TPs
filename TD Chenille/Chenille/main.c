@@ -4,71 +4,86 @@
 #include <string.h>
 #include "chenille.h"
 #include "ConsoleTools.h"
-#define NBMAxX 30
-#define NBMAxY 30
-#define Rien ' '
 #include <time.h>
+#include <Windows.h>
 
 typedef char grille[NBMAxX][NBMAxY];
 //choix des positions aléatoires (Pour x et pour y)
-int Postion_Al_x(int L) {
-	srand(7);
+
+/*int Postion_Al_x(int L) {
 	int x = 0;
 	x = rand() % (0 + L);
 	return x;
 }
 int Postion_Al_y(int C) {
-	srand(14);
 	int y = 0;
 	y = rand() % (0 + C);
 	return y;
-}
-// Création de le Feuille(grille) + placement des feuilles si décidé
-void Tab(grille Tableau, int L, int C, char c, char p)
+}*/
+
+// Création de le Feuille(grille) + placement d'une pomme si décidé
+void Tab(grille Tableau, int L, int C)
 {
-	//int x = 0; int y = 0;
+	int x = 0; int y = 0;
+	
 	printf("\n");
-	for (int i1 = 1; i1 < L; i1++) {printf("----");}
+	for (int i1 = 1; i1 < 15; i1++) {printf("______");}
 	printf("\n");
-
-	for (int i = 0; i < L; i++) {
+	x = rangedRand(0, 20);
+	y = rangedRand(0, 20);
+	for (int i = 0; i < L + 1; i++) {
 		printf("|");
-
-		for (int j = 0; j < C; j++) {
-			if (c == ' '){
-				if (p == ' ') {						//Si p=' '
-					Tableau[i][j] = c;
+		if (i == x) {
+			for (int j = 0; j < C; j++) {
+				if (j == y) {
+					Tableau[i][j] = '@';
 					printf(" %c ", Tableau[i][j]);
 				}
-				else {								//Si p='@'
-					//x=Postion_Al_x(L);
-					//y=Postion_Al_y(C);
-
-					if ((i == Postion_Al_x(L)) && (j == Postion_Al_y(C))) {		//Je vérifie qe i et j conincident avec x et y
-						Tableau[i][j] = p;
-						printf(" %c ", Tableau[i][j]);}
-					else {
-						Tableau[i][j] = c;
-						printf(" %c ", Tableau[i][j]);}	
+				else {
+					j = C - 1;
 				}
+
 			}
 		}
+		else {
+			for (int j = 0; j < C; j++) {
+				Tableau[i][j] = ' ';
+				printf(" %c ", Tableau[i][j]);
+			}
+		}
+		
+
 		printf("|");
 		printf("\n");
 	}
-	
-	for (int i1 = 1; i1 < L; i1++) {printf("----");}
+	for (int i1 = 1; i1 < 15; i1++) {printf("______");}
+
+	/*for (int i2 = 0; i2 < L + 1; i2++) {
+		for (int j2 = 0; j2 < C; j2++) {
+			if (Tableau[i2][j2] != '@') {
+				Tableau[i2][j2] = ' ';
+				printf(" %c ", Tableau[i2][j2]);
+			}
+		}
+	}*/
 }
 
 
+/*void InitChenille(CHENILLE* chenille) {
+
+}*/
+
+
+
 int main() {
+
+	srand(7);
 	int L = 0; int C = 0; grille Tableau = { 0 }; char c = ' '; char p;
-	printf("Cration de la feuille !");
+	printf("Creation de la feuille !\n");
 	printf("\nNombre de Ligne : ");
 	scanf_s("%d", &L);
 	printf("\nNombre de Colonnes : ");
 	scanf_s("%d", &C);
-	printf("\nVoulez vous placer les pommes ?\nSi oui, tapez '@'\nSinon, tapez ' '.\n --> : ");
-	p = _getch();
-	Tab(Tableau, L, C, c,p);
+	
+	Tab(Tableau, L, C);
 }
