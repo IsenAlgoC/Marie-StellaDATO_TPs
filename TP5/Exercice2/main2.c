@@ -7,5 +7,7 @@
 
 int main() {
 	
+	TABLEAU* Tab;
 	newArray();
+	//setElement(Tab, 8, 25);
 }
