@@ -6,72 +6,57 @@
 #include "ConsoleTools.h"
 #include <time.h>
 #include <Windows.h>
+#define NBMAxX 21
+#define NBMAxY 21
+#define CHENILLETAILLEMAX 20
+#define CHENILLETAILLEINIT 5
 
 typedef char grille[NBMAxX][NBMAxY];
-//choix des positions aléatoires (Pour x et pour y)
 
-/*int Postion_Al_x(int L) {
-	int x = 0;
-	x = rand() % (0 + L);
-	return x;
-}
-int Postion_Al_y(int C) {
-	int y = 0;
-	y = rand() % (0 + C);
-	return y;
-}*/
-
-// Création de le Feuille(grille) + placement d'une pomme si décidé
+// Création de le Feuille(grille) avec les pommes 
 void Tab(grille Tableau, int L, int C)
 {
 	int x = 0; int y = 0;
 	
 	printf("\n");
-	for (int i1 = 1; i1 < 15; i1++) {printf("______");}
+	for (int i1 = 1; i1 < 10; i1++) {printf("______");}
 	printf("\n");
-	x = rangedRand(0, 20);
-	y = rangedRand(0, 20);
+	
 	for (int i = 0; i < L + 1; i++) {
 		printf("|");
-		if (i == x) {
-			for (int j = 0; j < C; j++) {
-				if (j == y) {
-					Tableau[i][j] = '@';
-					printf(" %c ", Tableau[i][j]);
-				}
-				else {
-					j = C - 1;
-				}
-
-			}
+		x = rangedRand(0, 20);
+		y = rangedRand(0, 20);
+		if (i==x)
+		for (int j = 0; j < C; j++) {
+			if (i==x && j == y) { Tableau[i][j] = '@'; }
+			else { Tableau[i][j] = ' ';}
+			printf(" %c ", Tableau[i][j]);
 		}
 		else {
-			for (int j = 0; j < C; j++) {
+			for (int j = 0; j < C; j++) { 
 				Tableau[i][j] = ' ';
 				printf(" %c ", Tableau[i][j]);
 			}
 		}
-		
-
 		printf("|");
 		printf("\n");
 	}
-	for (int i1 = 1; i1 < 15; i1++) {printf("______");}
-
-	/*for (int i2 = 0; i2 < L + 1; i2++) {
-		for (int j2 = 0; j2 < C; j2++) {
-			if (Tableau[i2][j2] != '@') {
-				Tableau[i2][j2] = ' ';
-				printf(" %c ", Tableau[i2][j2]);
-			}
-		}
-	}*/
+	
+	for (int i2 = 1; i2 < 10; i2++) {printf("______");}
 }
 
 
-/*void InitChenille(CHENILLE* chenille) {
+void InitChenille(CHENILLE* chenille) {
+	chenille->direction = 'D';
+	chenille->size = CHENILLETAILLEINIT;
+	for (int i = 0; i < chenille->size; i++) {
+		chenille->tabChenille[i].X = i;
+		chenille->tabChenille[i].Y = 0;
+	}
+}
+int DessineChenille(CHENILLE chenille) {
 
-}*/
+}
 
 
 

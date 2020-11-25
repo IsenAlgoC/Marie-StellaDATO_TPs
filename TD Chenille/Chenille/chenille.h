@@ -3,11 +3,12 @@
 #define NBMAxX 21
 #define NBMAxY 21
 #define CHENILLETAILLEMAX 20
+#define CHENILLETAILLEINIT 5
 
 
 typedef char grille[NBMAxX][NBMAxY];
 
-typedef struct CHENILLE {
+typedef struct Chenille {
 
 	int size;
 	COORD tabChenille[CHENILLETAILLEMAX];
@@ -16,8 +17,11 @@ typedef struct CHENILLE {
 
 
 // Création de le Feuille(grille)
-void Tab(grille Tableau, int L, int C, char c, char p);
-//choix des positions aléatoires (Pour x et pour y)
-int Postion_Al_x(int L);
-int Postion_Al_y(int C);
-//void InitChenille(CHENILLE* Chenille);
+void Tab(grille Tableau, int L, int C);
+
+//On initialise les paramètres de la chenille
+void InitChenille(CHENILLE* Chenille);
+
+//On affiche la chenille
+//Renvoie un code d’erreur 0 si tout se passe bien, ou -1 en cas d'anomalie.
+int DessineChenille(CHENILLE chenille);
