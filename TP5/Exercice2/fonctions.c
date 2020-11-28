@@ -76,3 +76,25 @@ int displayElements(TABLEAU* tab, int startPos, int endPos)
 		}
 	}
 }
+
+int deleteElements(TABLEAU* tab, int startPos, int endPos) 
+{
+	int tmp = 0;
+	if (tab == NULL) { return -1; }
+	else {
+		if (startPos <= endPos) {			//j'affiche de 0 à start 
+			for (int i = 0; i < endPos; i++) {
+				printf(" %d ", tab->elt[i]);
+			}
+			for (int j = endPos; j < tab->size; j++) {		//puis de end à size
+				printf(" %d ", tab->elt[j]);
+			}
+		}
+		else {			//j'intervertie les deux valeurs
+			tmp = startPos; startPos = endPos; endPos = tmp;
+
+		}
+		tab->size = tab->size - endPos + startPos;		//on met à jour la taille
+	}
+	return (tab->size);
+}

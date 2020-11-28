@@ -23,3 +23,10 @@ int setElement(TABLEAU* tab, int pos, int element);
 // renvoie -1 si erreur, sinon 0
 // startPos >= EndPos n’est pas un cas d’erreur et doit être traité.
 int displayElements(TABLEAU* tab, int startPos, int endPos);
+
+//Supprime des éléments avec compactage du tableau
+//Met à jour le nombre d'éléments dans le tableau et diminue la taille du tableau
+// renvoie -1 si erreur, sinon la nouvelle taille du tableau
+// startPos >= EndPos n’est pas un cas d’erreur et doit être traité.
+int deleteElements(TABLEAU * tab, int startPos, int endPos);
+
