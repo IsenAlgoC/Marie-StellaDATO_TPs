@@ -139,14 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\TP6\liste.c" />
-    <ClCompile Include="..\..\..\TP6\outil.c" />
-    <ClCompile Include="..\..\..\TP6\rep.c" />
+    <ClCompile Include="liste.c" />
+    <ClCompile Include="outil.c" />
+    <ClCompile Include="rep.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\TP6\liste.h" />
-    <ClInclude Include="..\..\..\TP6\personne.h" />
-    <ClInclude Include="..\..\..\TP6\rep.h" />
+    <ClInclude Include="liste.h" />
+    <ClInclude Include="personne.h" />
+    <ClInclude Include="rep.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
