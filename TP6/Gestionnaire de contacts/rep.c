@@ -258,6 +258,7 @@ int saisie_enreg(Enregistrement *enr)
 
 	}
 	/* on copie dans le champ tel... */
+	compact(tmp); //on le filtre avant de le copier dans l'enregistrement
 	strncpy_s(enr->tel, _countof(enr->tel), tmp, _TRUNCATE);
 
 	return OK;

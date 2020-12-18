@@ -15,7 +15,6 @@
 
 extern bool modif;
 
-
 /**********************************************************************/
 /*  Ajout d'un contact dans le répertoire stocké en mémoire           */
 /**********************************************************************/
@@ -28,34 +27,52 @@ int ajouter_un_contact_dans_rep(Repertoire *rep, Enregistrement enr)
 
 	if (rep->nb_elts < MAX_ENREG)
 	{
-		
 		rep->tab[idx] = enr;	//A l'indixe idx du tableau tab dans la structure Répertoire, j'associe la syntaxe nom;prenom;contact qui se regroupe dans enr
 		rep->nb_elts += 1;		//y a un élément en plus
 		compact(rep->tab->tel);
 		return 1;
-		
 	}
 	else {
 		return(ERROR);
 	}
 	
-	
 #else
 #ifdef IMPL_LIST
-
-	bool inserted = false;
-	if (rep->nb_elts == 0) {
+	SingleLinkedListElem* CurrentElement;
+	int i = 0;
+	modif = false;
+	//bool inserted = false;
+	if (rep->nb_elts == 0) {					//s'il n'y a pas déléments dans le répertoire
 		if (InsertElementAt(rep->liste, rep->liste->size, enr) != 0) {
 			rep->nb_elts += 1;
 			modif = true;
 			rep->est_trie = true;
 			return(OK);
 		}
+		
+	}
+	else {		//s'il y a des éléments dans le répertoire et qu'on veut en ajouter un autre, 
+				//il faut le mettre dans l'ordre. Du coup on doit faire un tri
+		//On parcours la liste 
+		while(modif==false){
+			 //on trie
+			CurrentElement = GetElementAt(rep->liste, i);
+			
+			if (est_sup(CurrentElement->pers, enr)==true || CurrentElement->next==NULL) {	//si enr est sup à CurrentElement
 
+				//je mets enr au next du Current qui est à i+1
+				InsertElementAt(rep->liste, i+1, enr);
+				rep->nb_elts += 1;
+				modif = true;
+				rep->est_trie = true;
+				return(OK);
+			}
+			i++;
+			CurrentElement = CurrentElement->next;   //comme si on faisait j=j+1
+		}
+		return(ERROR);
 	}
-	else {
-			// compléter code ici pour Liste
-	}
+	//Quand je fais le test, la liste n'est pas ordoné
 
 #endif
 	
@@ -101,12 +118,10 @@ void supprimer_un_contact_dans_rep(Repertoire *rep, int indice) {
 		rep->nb_elts--;
 		modif = true;
 	}
-
 	return (0); 
 	}
 #endif
 #endif
-
 
   /**********************************************************************/
   /*  fonction d'affichage d'un enregistrement sur une ligne à l'écran  */
@@ -129,7 +144,7 @@ void affichage_enreg_frmt(Enregistrement enr)
 {
 	// code à compléter ici
 	// comme fonction affichage_enreg, mais avec présentation alignées des infos
-	printf("\n| %10s | %10s  | %10s", enr.nom, enr.prenom, enr.tel);
+	printf("\n| %-20s | %-20s  | %-15s", enr.nom, enr.prenom, enr.tel);
 	return;
 } /* fin affichage_enreg */
 
@@ -158,22 +173,6 @@ bool est_sup(Enregistrement enr1, Enregistrement enr2)
 	//unsigned char e2nom = maj(enr2.nom);
 	if (_strcmpi(enr1.nom, enr2.nom) > 0) { return (true); }
 	else { return(false); }
-	
-	/*{ N=1; }
-	else {N=0;}
-
-	//on compare les prénoms en 2e
-	unsigned char e1prenom = maj(enr1.prenom);
-	unsigned char e2prenom = maj(enr2.prenom);
-	if (strcmp(e1prenom, e2prenom) > 0) { P=1; }
-	else { P=0; }
-
-	//on compare les tel en 3e
-	if (strcmp(enr1.tel, enr2.tel) > 0) { T = 1; }
-	else { T = 0; }
-
-	if (N == 1 && P == 1 && T == 1) {return (true);}
-	else {retrun(false);}*/
 
 }
  
@@ -185,34 +184,19 @@ void trier(Repertoire *rep)
 {
 
 #ifdef IMPL_TAB		//tri à bulle
-	/*int idx; 
-	char tmp;
 	
-	for (int j = 0; j < rep->nb_elts; j++) {
-		if (est_sup(rep->tab[j], rep->tab[j + 1]) == false)		//si le premier nom est inf au second
-		{
-			tmp = rep->tab[j + 1].nom;											//j'inverse les deux
-			*rep->tab[j + 1].nom = rep->tab[j].nom;
-			*rep->tab[j].nom = tmp;
-		}
-	}*/
-	int k = 0;			//code de Floran
 	Enregistrement tmp;
-	Enregistrement min; 
-		for (int i = 0; i < rep->nb_elts - 1; i++) {
-			min = rep->tab[i];
-			for (int j = 0; j < rep->nb_elts; j++) {
-				if (est_sup(min, rep->tab[j])) {
-					k = j;
-					min = rep->tab[j];
-				}
+	for (int j = 0; j < rep->nb_elts; j++) {
+		for (int i = 0; i < rep->nb_elts - j-1; i++)
+		{
+			if (est_sup(rep->tab[i], rep->tab[i + 1]) == false)		//si le premier est inf au second
+			{
+				tmp = rep->tab[i+1];								//j'inverse les deux
+				rep->tab[i+1] = rep->tab[i];
+				rep->tab[i] = tmp;
 			}
-			tmp = rep->tab[i];
-			rep->tab[i] = min;
-			rep->tab[k] = tmp;
 		}
-	return;
-	
+	}
 	
 #else
 #ifdef IMPL_LIST
@@ -221,7 +205,6 @@ void trier(Repertoire *rep)
 	// la liste est toujours triée
 #endif
 #endif
-
 
 	rep->est_trie = true;
 
@@ -253,11 +236,21 @@ int rechercher_nom(Repertoire *rep, char nom[], int ind)
 		else {
 			return -1;
 		}
-	}
-	
+	}	
 #else
 #ifdef IMPL_LIST
-							// ajouter code ici pour Liste
+	int j = 0;
+	SingleLinkedListElem* CurrentElement = GetElementAt(rep->liste, j);
+	while ((CurrentElement != NULL) && (!trouve)) {
+		strncpy_s(tmp_nom, _countof(tmp_nom2), CurrentElement->pers.nom, _TRUNCATE);
+		
+		if (strcmp(tmp_nom, tmp_nom2)== 0) { trouve = true; }
+		else {
+			// si pas trouvé, on passe au suivant
+			CurrentElement = CurrentElement->next;
+			j++;
+		}
+	}
 	
 #endif
 #endif
@@ -273,22 +266,15 @@ void compact(char *s)
 	/*Soit N un tableau qui comporte tous les chiffres de 0 à 9
 	Si dans s, il y a un caractère différent des éléments de N, on l'enlève
 	*/
-	
-	for (int j = 0; j < sizeof(s); j++) {
-		if  (s[j] < 0 || s[j]> 9) //Si on est avant le 0 ou après le 9
+	int l = 0;
+	for (int j = 0; j < strlen(s); j++) {
+		if  (s[j] > 47 && s[j]< 58) //Si on est avant le 0 ou après le 9  en hexadecimal
 		{
-			s[j] = s[j+1];			//j'écrase ce caractère avec le suivant
-							        //i.e que je décale la suite de nombre vers la gauche
+			s[l] = s[j];			//j'écrase ce caractère avec le suivant
+			l++;				    //i.e que je décale la suite de nombre vers la gauche
 		}
 	}
-
-	/*OU ON FAIT MAYBE CECI
-	for (int j = 0; j < sizeof(s); j++) {
-		if (s[j] != 0 || s[j] != 1 || s[j] != 2 || s[j] != 3 || s[j] != 4 || s[j] != 5 || s[j] != 6 || s[j] != 7 || s[j] != 8 || s[j] != 9)
-		{
-			s[j] = s[j + 1];
-		}
-	}*/
+	s[l] = '\0';
 
 	return 1;
 }
@@ -317,13 +303,29 @@ int sauvegarder(Repertoire *rep, char nom_fichier[])
 		sprintf_s(buffer,_countof(buffer), "%s",rep->tab);	//countof s'utilise pour les variables. C'est comme sizeof mais sizeof est pour les types (int, char etc)
 		fputs(buffer, fic_rep); //puis on mets dans le ficchier fic_rep, le buffer
 	}
-
+	fclose(fic_rep);
 #else
 #ifdef IMPL_LIST
-	// ajouter code ici pour Liste
-#endif
-#endif
+	// code ici pour Liste
+	errno_t err;
+	int j = 0;
+	SingleLinkedListElem* CurrentElement = GetElementAt(rep->liste, j);;
+	if ((err=fopen_s(&fic_rep, nom_fichier, "w")) != 0 || fic_rep == NULL)	//s'il n'y a rien dans le fichier
+	{
+		return err;  
+	}
+	while (CurrentElement != NULL) { //On écrit les informations dans le ficher
+		fprintf(fic_rep, "%s%c", CurrentElement->pers.nom, SEPARATEUR);
+		fprintf(fic_rep, "%s%c", CurrentElement->pers.prenom, SEPARATEUR);
+		fprintf(fic_rep, "%s\n", CurrentElement->pers.tel);
+		j++;
+		CurrentElement = CurrentElement->next;   //comme si on faisait j=j+1
+	}
+	fclose(fic_rep);
 
+
+#endif
+#endif
 	return(OK);
 } /* fin sauvegarder */
 
@@ -342,6 +344,7 @@ int charger(Repertoire *rep, char nom_fichier[])
 	int long_max_rec = sizeof(Enregistrement);
 	char buffer[sizeof(Enregistrement) + 1];
 	int idx = 0;
+	SingleLinkedListElem* CurrentElement = rep->liste->head;			//A décommenter pour l'implémentation liste
 
 	char *char_nw_line;
 	
@@ -377,11 +380,21 @@ int charger(Repertoire *rep, char nom_fichier[])
 #else
 #ifdef IMPL_LIST
 														// ajouter code implemention liste
+				if (lire_champ_suivant(buffer, &idx, CurrentElement->pers.nom, MAX_NOM, SEPARATEUR) == OK)
+				{
+					idx++;							/* on saute le separateur */
+					if (lire_champ_suivant(buffer, &idx, CurrentElement->pers.prenom, MAX_NOM, SEPARATEUR) == OK)
+					{
+						idx++;
+						if (lire_champ_suivant(buffer, &idx, CurrentElement->pers.tel, MAX_TEL, SEPARATEUR) == OK)
+							InsertElementAt(rep->liste, num_rec, CurrentElement->pers);
+						num_rec++;		/* element à priori correct, on le comptabilise */
+					}
+				}
 #endif
 #endif
-
 			}
-
+		
 		}
 		rep->nb_elts = num_rec;
 		fclose(fic_rep);
